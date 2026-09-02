@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VPN Browser</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">🌐 <span>VPN</span>Browser <em class="badge">demo</em></div>
+  <div class="topbar-right muted" id="serverIp">Sunucu IP: …</div>
+</header>
+
+<div class="toolbar">
+  <div class="navbtns">
+    <button id="btnBack" title="Geri" class="iconbtn">←</button>
+    <button id="btnFwd" title="İleri" class="iconbtn">→</button>
+    <button id="btnReload" title="Yenile" class="iconbtn">⟳</button>
+    <button id="btnHome" title="Başlangıç sayfası" class="iconbtn">⌂</button>
+  </div>
+  <div class="addrwrap">
+    <input id="addr" type="text" spellcheck="false" autocomplete="off"
+           placeholder="Adres girin ya da arama yapın — örn: pypi.org">
+    <button id="btnGo">Git</button>
+  </div>
+</div>
+
+<div class="main">
+  <div id="viewWrap">
+    <div id="loading" class="overlay hidden">
+      <div class="spinner"></div>
+      <span id="loadingText">Yükleniyor…</span>
+    </div>
+    <iframe id="view" sandbox="allow-scripts allow-popups" title="Sayfa içeriği"></iframe>
+    <div id="errPage" class="hidden"></div>
+  </div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-head">
+      <h2>Proxy Listesi</h2>
+      <button id="btnSide" class="iconbtn" title="Paneli daralt/aç">⟩</button>
+    </div>
+
+    <form id="addForm" class="addform" autocomplete="off">
+      <input id="pName" type="text" placeholder="İsim (opsiyonel)">
+      <input id="pUrl" type="text" placeholder="socks5://user:pass@host:1080" spellcheck="false">
+      <button type="submit" class="btn-accent">+ Ekle</button>
+    </form>
+
+    <div id="proxyList" class="proxylist"></div>
+
+    <div class="side-foot muted">
+      <div>Format: <code>http://host:port</code> · <code>https://host:port</code> · <code>socks5://user:pass@host:port</code></div>
+      <div class="warn">⚠ Demo amaçlıdır — kendi proxy'lerinizi tanımlayın. Tüm istekler sunucu tarafından, seçili proxy üzerinden yapılır.</div>
+    </div>
+  </aside>
+</div>
+
+<footer class="statusbar">
+  <span class="st-item" id="stProxy">Proxy: —</span>
+  <span class="st-item" id="stExit">Çıkış IP: —</span>
+  <span class="st-item" id="stInfo"></span>
+  <span class="st-item msg" id="stMsg"></span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
